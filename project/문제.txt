@@ -1,0 +1,13 @@
+SQL 통계, 서브쿼리 SQL문 작성
+
+-- 1. 로그인 이력정보가 있는  회원 아이디, 가입날짜, 로그인시간, 로그아웃 시간 조회 (join)
+select e.EMPNO , e.JOIN_DT , l.LG_DT , l.LO_DT  from TB_EMP e
+inner join tb_login l
+on e.empno = l.empno
+where l.LGNO is not null
+
+-- 2. 2023년에 충전한 회원들의 금액 총합 조회
+select sum(r.REC_MN) from TB_EMP e
+inner join TB_REC r
+on e.EMPNO = r.EMPNO 
+where r.REC_DT >= "2023-01-01" and r.REC_DT <= "2024-01-01"
